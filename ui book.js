@@ -1,38 +1,38 @@
 const kenangan = [
   {
-      judul: "Lembah Berkabut",
-      gambar: "assets/vintage-fantasy-memory1.jpg", // Ganti Path
-      deskripsi: "Ingatkah saat kita memandang lembah yang diselimuti kabut pagi? Ada keajaiban tersendiri di sana, seolah dunia lain baru saja terbangun.",
+      judul: "old but gold",
+      gambar: "assets/WhatsApp Image 2025-04-18 at 21.02.27.jpeg", // Ganti Path
+      deskripsi: "kamu inget ga ini pas kita kelas 10 kerja kelompok waktu itu wkwkwkkw bisa pas gitu ya bersebelahan gitu sama sama ketawa lagi AHAHAHAAHAH LUCUUUUU",
       alt: "Pemandangan lembah berkabut dengan gaya vintage fantasi"
   },
   {
-      judul: "Festival Lentera",
-      gambar: "assets/vintage-fantasy-memory2.jpg", // Ganti Path
-      deskripsi: "Malam itu, langit dipenuhi cahaya harapan dari lentera-lentera yang terbang, membawa doa-doa dalam keheningan malam.",
+      judul: "ga sabar nunggu lomba date lagi",
+      gambar: "assets/WhatsApp Image 2025-04-18 at 21.04.19.jpeg", // Ganti Path
+      deskripsi: "ni kita pas lomba bareng waktu itu enjoyable banget si sampe sampe aku lolos waktu itu kalo ga salah soale kalo ada kamu kaya MAKIN semangat aja AWODJOEJDORJEI",
       alt: "Suasana festival lentera malam hari"
   },
   {
-      judul: "Kedai Teh Tersembunyi",
-      gambar: "assets/vintage-fantasy-memory3.jpg", // Ganti Path
-      deskripsi: "Menemukan kedai teh tua di ujung jalan setapak, dengan aroma melati yang menenangkan jiwa dan cerita dari masa lalu.",
+      judul: "fotbar kita nih inget ga?",
+      gambar: "assets/WhatsApp Image 2025-04-18 at 21.42.15.jpeg", // Ganti Path
+      deskripsi: "awww ini lucu banget ya kita dulu pas kelas 10 kaya cocok banget gasii kita Sama sama pose 2,sama sama suka, sama sama Attractive lagi AHAHAHAHAHAAYY HAYUKk",
       alt: "Kedai teh tradisional dengan suasana tenang"
   },
   { // Kenangan ke-4
-      judul: "Jembatan Merah",
-      gambar: "assets/vintage-fantasy-memory4.jpg", // Ganti Path
-      deskripsi: "Berjalan melintasi jembatan merah di atas sungai yang tenang, seakan melangkah ke dimensi lain yang penuh kedamaian.",
+      judul: "classmeet seru ya",
+      gambar: "assets/WhatsApp Image 2025-04-18 at 21.51.14.jpeg", // Ganti Path
+      deskripsi: "AHAHAHAHAH INI PAS KELAS 10 pas classmeet gasi wkwkwkw,oh iya btw kalo dilihat lihat yang pose ✌️ cantik juga yahh",
       alt: "Jembatan kayu merah tradisional di atas sungai"
   },
   { // Kenangan ke-5
-      judul: "Di Bawah Pohon Sakura",
-      gambar: "assets/vintage-fantasy-memory5.jpg", // Ganti Path
-      deskripsi: "Duduk berdua di bawah pohon sakura yang mekar penuh, kelopaknya berjatuhan seperti salju merah muda yang lembut.",
+      judul: "cinta ku terbagi dengan scara",
+      gambar: "assets/WhatsApp Image 2025-04-18 at 21.34.49.jpeg", // Ganti Path
+      deskripsi: "wkwkwkw ini juga aku inget banget pas kamu duduk sebelah aku apa ya tiba tiba kamu pinjem hpku ternyata buat DOWNLOAD FOTO SCARAAA😭😭😭😭",
       alt: "Pemandangan pohon sakura mekar dengan gaya fantasi"
   },
 ];
 
 // --- Konfigurasi Pesan & Suara ---
-const nomorWhatsApp = "6281234567890"; // GANTI NOMOR
+const nomorWhatsApp = "62 819-9829-9789" 
 const pesanDefaultWhatsApp = "Terima kasih untuk kartu ucapan ajaibnya! Sangat indah. Permohonanku tadi adalah...";
 let isMuted = false;
 let toneStarted = false;
@@ -216,7 +216,7 @@ function tampilkanHadiah() { /* ... (Sama, panggil switchContent, update WA link
    switchContent(bukuKenangan, hadiahContainer);
    const pesanWA = `${pesanDefaultWhatsApp}\n"${permohonanPengguna || '(Aku tidak menulis permohonan khusus, tapi aku berharap yang terbaik!)'}"`;
    const encodedMessage = encodeURIComponent(pesanWA);
-   tombolWhatsApp.href = `https://wa.me/${nomorWhatsApp}?text=${encodedMessage}`;
+   tombolWhatsApp.href = `https://wa.me/62 819-9829-9789?text=${encodedMessage}`;
    videoHadiahElem.pause();
    videoHadiahElem.currentTime = 0;
    setGifsVisible(true);

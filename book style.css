@@ -76,10 +76,10 @@
       /* Border Ornamen Baru */
       border: 8px solid transparent; /* Lebarkan border untuk border-image */
       border-image-source: var(--border-image-url);
-      border-image-slice: 8; /* Sesuaikan slice dengan lebar border */
-      border-image-width: 8px;
+      border-image-slice:10;/* Sesuaikan slice dengan lebar border */
+      border-image-width: 10px;
       border-image-outset: 0;
-      border-image-repeat: round; /* Coba 'round' atau 'stretch' */
+      border-image-repeat: stretch;/* Coba 'round' atau 'stretch' */
       background-clip: padding-box; /* Agar background tidak tumpang tindih dengan border-image */
   }
   .content-section.hidden-transition { opacity: 0 !important; transform: scale(0.95) !important; pointer-events: none !important; }
