@@ -1,0 +1,169 @@
+    /* == Konfigurasi Tema (Sedikit Penyesuaian) == */
+    :root {
+      --font-body: 'Noto Serif JP', serif;
+      --font-heading: 'Cinzel Decorative', serif;
+      --font-script: 'Zhi Mang Xing', cursive;
+
+      --color-text: #4a3f35;
+      --color-text-muted: #7a6f63;
+      --color-bg-paper: #f4eee0;
+      --color-bg-paper-darker: #e8e0d0;
+      --color-border: #c8bda9;
+      --color-border-ornate: #a08d76; /* Border lebih gelap untuk ornamen */
+      --color-accent-gold: #b08d57;
+      --color-accent-gold-dark: #8e7145;
+      --color-accent-red: #9a3e3e;
+      --color-accent-green: #6a8a7b;
+      --color-shadow: rgba(74, 63, 53, 0.18); /* Shadow sedikit lebih kuat */
+      --color-glow-magic: rgba(255, 230, 180, 0.7); /* Glow lebih jelas */
+      --color-flame: #ffda8a; /* Warna api lebih terang */
+      --color-flame-outer: #ffb347;
+
+      /* URL untuk border image (contoh pola bambu/kayu sederhana) */
+      /* Anda bisa menggantinya dengan SVG data URI atau file gambar jika diinginkan */
+      --border-image-url: linear-gradient(45deg, var(--color-border-ornate) 25%, transparent 25%, transparent 75%, var(--color-border-ornate) 75%),
+                          linear-gradient(45deg, var(--color-border-ornate) 25%, transparent 25%, transparent 75%, var(--color-border-ornate) 75%);
+      --border-image-size: 10px 10px;
+  }
+
+  /* == Pengaturan Dasar & Latar Belakang == */
+  body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background-color: var(--color-bg-paper-darker);
+      /* Latar belakang baru: Tekstur kertas + pola awan halus */
+      background-image:
+          /* Pola awan halus (SVG data URI) */
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23d8c8b8' fill-opacity='0.1'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31h20l-5 20h-20l5-20zm-22 0l5 20H36l5-20zm42 31h20l-5 20H76l5-20zM31 61l5 20H36l5-20zM0 61h20l-5 20H0l5-20z'/%3E%3C/g%3E%3C/svg%3E"),
+          /* Tekstur kertas halus */
+          linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02)),
+          linear-gradient(-45deg, rgba(0,0,0,0.01) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.01) 75%, rgba(0,0,0,0.01));
+      background-size: 80px 80px, 20px 20px, 20px 20px;
+      background-position: 0 0, 0 0, 10px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+      box-sizing: border-box;
+      overscroll-behavior-y: contain;
+      position: relative;
+  }
+
+  /* Tombol Mute/Unmute (Sama seperti sebelumnya) */
+  #mute-button {
+      position: fixed; bottom: 15px; right: 15px;
+      background-color: rgba(176, 141, 87, 0.7); color: var(--color-bg-paper);
+      border: 1px solid rgba(244, 238, 224, 0.5); border-radius: 50%;
+      width: 40px; height: 40px; font-size: 18px; cursor: pointer; z-index: 200;
+      display: flex; justify-content: center; align-items: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  #mute-button:hover { background-color: var(--color-accent-gold); transform: scale(1.1); }
+  #mute-button:active { transform: scale(1.0); }
+
+  /* Wadah Utama & GIF (Layout Sama) */
+  .main-content-area { width: 100%; max-width: 1000px; display: flex; justify-content: center; align-items: flex-start; gap: 1.5rem; position: relative; }
+  .side-gif { width: 120px; height: auto; position: sticky; top: 2rem; display: none; opacity: 0; transition: opacity 0.6s ease-in-out 0.3s; border: 3px solid; border-image-source: var(--border-image-url); border-image-slice: 5; border-image-repeat: round; background: linear-gradient(to bottom, var(--color-bg-paper), var(--color-bg-paper-darker)); padding: 5px; box-shadow: 0 3px 8px var(--color-shadow); filter: sepia(0.2) contrast(0.95); }
+  .side-gif.visible { display: block; opacity: 1; }
+  .gif-container { display: flex; flex-direction: column; gap: 1rem; }
+  .center-container { flex-grow: 1; max-width: 580px; /* Lebih lebar lagi */ width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+  /* Efek Transisi Antar Bagian (Sama) */
+  .content-section { width: 100%; opacity: 1; transform: scale(1); transition: opacity 0.6s ease-out, transform 0.6s ease-out; box-sizing: border-box; background-color: var(--color-bg-paper); /* Border di-override di bawah */ border-radius: 8px; box-shadow: 0 6px 18px var(--color-shadow); padding: 1.8rem 2.2rem; position: relative; overflow: hidden; margin-bottom: 1rem; /* Jarak antar section jika tumpuk */
+      /* Border Ornamen Baru */
+      border: 8px solid transparent; /* Lebarkan border untuk border-image */
+      border-image-source: var(--border-image-url);
+      border-image-slice: 8; /* Sesuaikan slice dengan lebar border */
+      border-image-width: 8px;
+      border-image-outset: 0;
+      border-image-repeat: round; /* Coba 'round' atau 'stretch' */
+      background-clip: padding-box; /* Agar background tidak tumpang tindih dengan border-image */
+  }
+  .content-section.hidden-transition { opacity: 0 !important; transform: scale(0.95) !important; pointer-events: none !important; }
+  .content-section.visible-transition { opacity: 1 !important; transform: scale(1) !important; pointer-events: auto !important; }
+  .hidden { display: none !important; }
+
+  /* Hapus dekorasi sudut lama karena sudah pakai border-image */
+  /* .content-section::before, .content-section::after { display: none; } */
+
+  /* == Bagian Kue Ulang Tahun (Revisi) == */
+  .cake-container { text-align: center; /* Gaya dasar dari .content-section */ }
+  .cake-container h2 { font-family: var(--font-script); font-size: 2.8em; color: var(--color-accent-red); margin-bottom: 0.8rem; line-height: 1.1; }
+  .cake-container p.instruction { font-size: 0.98em; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+
+  /* SVG Kue - Gaya Baru (Lebih Mirip Kue Ultah) */
+  #birthday-cake-svg { width: 300px; height: auto; max-width: 95%; display: block; margin: 0 auto 1rem auto; filter: drop-shadow(0 4px 6px var(--color-shadow)); }
+  .cake-stand { fill: var(--color-accent-gold-dark); }
+  .cake-tier { fill: var(--color-bg-paper-darker); stroke: var(--color-border-ornate); stroke-width: 0.7; }
+  .cake-frosting { fill: var(--color-bg-paper); filter: url(#frosting-shadow); } /* Efek shadow untuk frosting */
+  .cake-deco { fill: var(--color-accent-red); }
+  .cake-deco-alt { fill: var(--color-accent-green); }
+
+  /* Lilin & Api (Sama seperti V2) */
+  .candle-stick { fill: #a07d5e; stroke: #7a6855; stroke-width: 0.5; }
+  .candle { cursor: pointer; transition: transform 0.2s ease; }
+  .candle:hover { transform: translateY(-3px); }
+  .flame { fill: url(#flameGradient); stroke: var(--color-flame-outer); stroke-width: 0.8; opacity: 0.9; animation: magicFlicker 1.2s infinite alternate ease-in-out; transform-origin: bottom center; transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+  .flame.extinguished { opacity: 0; transform: scale(0) rotate(30deg); animation: none; pointer-events: none; }
+  @keyframes magicFlicker { 0% { transform: scale(1) skewX(0deg); opacity: 0.9; } 50% { transform: scale(1.05, 0.95) skewX(5deg); opacity: 0.7; } 100% { transform: scale(0.98, 1.02) skewX(-3deg); opacity: 0.95; } }
+
+  /* == Pop-up Permohonan (Sama seperti V2) == */
+  .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9) rotate(-2deg); background-color: var(--color-bg-paper); background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 100% 1.5em; padding: 30px 40px; border: 1px solid var(--color-border); border-radius: 4px; box-shadow: 0 10px 25px rgba(74, 63, 53, 0.3); z-index: 100; width: 90%; max-width: 450px; text-align: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease-in-out, transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), visibility 0.4s; }
+  .popup.show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  .popup h3 { font-family: var(--font-script); color: var(--color-accent-red); font-size: 2.2em; margin-top: 0; margin-bottom: 15px; }
+  .popup textarea { width: 100%; min-height: 100px; padding: 12px; border: 1px dashed var(--color-border); border-radius: 4px; margin-bottom: 20px; font-family: var(--font-body); font-size: 1em; line-height: 1.6; box-sizing: border-box; resize: vertical; background-color: transparent; color: var(--color-text); }
+  .popup textarea:focus { outline: none; border-color: var(--color-accent-gold); background-color: rgba(176, 141, 87, 0.05); }
+  .popup button { font-family: var(--font-heading); background-color: var(--color-accent-red); color: var(--color-bg-paper); border: none; padding: 10px 25px; border-radius: 30px 5px 30px 5px; cursor: pointer; font-size: 1.1em; font-weight: bold; transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease; width: auto; min-width: 150px; box-shadow: 2px 2px 0px var(--color-accent-gold-dark); margin-top: 5px; }
+  .popup button:hover { background-color: #b34a4a; box-shadow: 3px 3px 0px var(--color-accent-gold); }
+  .popup button:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px var(--color-accent-gold-dark); }
+
+  /* == Buku Kenangan & Hadiah (Penyesuaian Tema) == */
+  #buku-kenangan, #hadiah-container { background: linear-gradient(to bottom right, var(--color-bg-paper), var(--color-bg-paper-darker)); /* Gaya dasar dari .content-section & border-image */ }
+  #buku-kenangan h2, #hadiah-container h2 { font-family: var(--font-heading); color: var(--color-accent-gold-dark); font-size: 1.9rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.6rem; }
+  #hadiah-container h2 { color: var(--color-accent-green); }
+  #buku-kenangan p, #hadiah-container p { color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1.3rem; font-size: 1em; }
+
+  /* Gambar Kenangan - Bingkai & Filter (Sama seperti V2) */
+  #gambar-kenangan { border-radius: 4px; border: 8px solid #8b7e6a; border-image: linear-gradient(to bottom right, #a08d76, #6b5e4e) 1; box-shadow: 0 0 18px 5px var(--color-glow-magic), inset 0 0 10px rgba(0,0,0,0.1); width: 100%; height: 19rem; /* Sedikit lebih tinggi */ display: block; object-fit: cover; margin: 1rem auto 1.5rem auto; background-color: var(--color-bg-paper-darker); cursor: pointer; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, filter 0.4s ease; filter: sepia(0.3) contrast(1.05) brightness(0.95); }
+  #gambar-kenangan:hover { filter: sepia(0.1) contrast(1.1) brightness(1); box-shadow: 0 0 25px 8px var(--color-glow-magic), inset 0 0 10px rgba(0,0,0,0.1); }
+  #gambar-kenangan.zoomed { transform: scale(1.5); z-index: 50; position: relative; border-color: var(--color-accent-gold); box-shadow: 0 0 30px 10px var(--color-glow-magic), 0 10px 30px rgba(0,0,0,0.3); filter: sepia(0) contrast(1) brightness(1); }
+
+  /* Video Hadiah (Sama seperti V2) */
+  #hadiah-container video { border-radius: 4px; border: 4px solid var(--color-accent-green); box-shadow: 0 4px 10px var(--color-shadow); width: 100%; display: block; margin: 1rem auto 1.5rem auto; background-color: #000; }
+
+  /* Tombol Navigasi & Aksi (Sama seperti V2) */
+  .navigation-buttons, .action-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
+  .action-buttons { flex-direction: column; gap: 0.75rem; }
+  #buku-kenangan button, #hadiah-container a, #hadiah-container button { font-family: var(--font-body); font-weight: 600; border-radius: 20px; padding: 0.7rem 1.2rem; cursor: pointer; border: 1px solid transparent; transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease, border-color 0.3s ease; flex: 1; font-size: 0.95em; text-align: center; box-shadow: 0 2px 5px var(--color-shadow); text-decoration: none; }
+  #buku-kenangan button:active, #hadiah-container a:active, #hadiah-container button:active { transform: scale(0.96); box-shadow: 0 1px 2px var(--color-shadow); }
+  #buku-kenangan button:hover, #hadiah-container a:hover, #hadiah-container button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px var(--color-shadow); }
+  #tombol-lanjut, #tombol-whatsapp { background-color: var(--color-accent-gold); color: var(--color-bg-paper); border-color: var(--color-accent-gold-dark); }
+  #tombol-lanjut:hover, #tombol-whatsapp:hover { background-color: var(--color-accent-gold-dark); border-color: var(--color-accent-gold); }
+  #tombol-sebelumnya, #tombol-putar-ulang { background-color: var(--color-bg-paper-darker); color: var(--color-text-muted); border-color: var(--color-border); }
+  #tombol-sebelumnya:hover, #tombol-putar-ulang:hover { background-color: var(--color-border); color: var(--color-text); border-color: var(--color-text-muted); }
+  #tombol-sebelumnya.invisible { visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; transform: scale(0.8) !important; }
+  #tombol-whatsapp { flex: none; width: 100%; background-color: var(--color-accent-green); border-color: #5a7a6b; }
+  #tombol-whatsapp:hover { background-color: #5a7a6b; border-color: var(--color-accent-green); }
+  #tombol-putar-ulang { flex: none; width: 100%; }
+
+  /* == Responsiveness (Penyesuaian Kecil) == */
+  @media (max-width: 768px) {
+       body { padding: 0.5rem; }
+       .main-content-area { flex-direction: column; align-items: center; gap: 1rem; }
+       .side-gif { position: static; width: 70px; margin: 0.5rem 4px; } /* Kecilkan lagi */
+       .gif-container { order: -1; flex-direction: row; justify-content: center; width: 100%; flex-wrap: wrap; gap: 0.5rem; }
+       .center-container { max-width: 100%; }
+       .content-section { padding: 1.2rem 1.5rem; border-width: 6px; border-image-slice: 6; border-image-width: 6px; }
+       .cake-container h2 { font-size: 2.2em; }
+       #birthday-cake-svg { width: 240px; }
+       .popup { padding: 20px 25px; }
+       .popup h3 { font-size: 1.8em; }
+       #buku-kenangan h2, #hadiah-container h2 { font-size: 1.6rem; }
+       #gambar-kenangan { height: 16rem; border-width: 6px; }
+       #gambar-kenangan.zoomed { transform: scale(1.15); }
+       .navigation-buttons { flex-direction: column; gap: 0.5rem; }
+       #buku-kenangan button { width: 100%; }
+  }
